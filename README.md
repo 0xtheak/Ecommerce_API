@@ -22,8 +22,6 @@ To use this API, you will need to have Node.js and MongoDB installed on your com
 
         Add the following environment variables to the .env file:
 
-        bash
-
         MONGOURL="mongodb://localhost:27017/Ecommerce_API"
 
 
