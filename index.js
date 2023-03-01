@@ -4,12 +4,13 @@ const app = express();
 
 app.use(express.urlencoded({extended : true}));
 
-// api routes
+// product api routes
 app.use('/', require('./routes'));
 
+// listening the api server on 5000
 app.listen(5000, function(err){
     if(err){
         console.log('failed to start');
     }
-    console.log('server has been started');
+    console.log('server has been started on port 5000');
 })

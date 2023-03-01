@@ -1,12 +1,11 @@
 const Models = require('../modals/product');
 
-// product response
+//product response
 module.exports.products = async function(req, res){
     try{
 
         // selecting only id, name, quantity field
         let product = await Models.Product.find({}, {id : 1, name: 1, quantity : 1, _id : 0});
-        console.log(product);
         if(product){
             return res.status(200).json({
                 data : {
@@ -28,6 +27,11 @@ module.exports.products = async function(req, res){
 // product create
 module.exports.create = async function(req, res){
     try{
+        if(req.body.name == undefined || req.body.quantity==undefined){
+            return res.status(400).json({
+                message : "parameter missing"
+            })
+        }
         // product quantity must be greater than while creating
         if(req.body.quantity>0){
             
@@ -63,7 +67,7 @@ module.exports.create = async function(req, res){
                     }
                 })
         }else {
-            return res.status(401).json({
+            return res.status(400).json({
                 message : "This data is already present the database"
             });
         }
@@ -84,7 +88,7 @@ module.exports.create = async function(req, res){
 }
 
 
-// delete product 
+// delete product with their respective id
 module.exports.delete = async function(req, res){
 
     try{
@@ -106,19 +110,17 @@ module.exports.delete = async function(req, res){
     }catch(err){
         if(err){
             console.log(`error in deleting products ${err}`);
-            return res.status(403).json({
-                message : "failed to delete data"
+            return res.status(400).json({
+                message : "unable to delete data"
             })
         }
     }
     
 }
 
-
+// update the product quantity
 module.exports.modify = async function(req, res){
     try{
-        console.log(req.query);
-        console.log(req.params);
         // quantity can't be negative
         if(req.query.number<0){
             return res.status(400).json({
@@ -146,8 +148,8 @@ module.exports.modify = async function(req, res){
     }catch(err){
         if(err){
             console.log(`error in modifying products ${err}`);
-            return res.status(403).json({
-                message : "failed! "
+            return res.status(400).json({
+                message : "failed! unable to update the quantity of the product "
             })
         }
     }

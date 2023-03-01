@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// product schema
 const productSchema = new mongoose.Schema({
     id : {
         type : Number,
@@ -23,6 +24,7 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
+// counter schema to update the id in the products data
 const counterSchema = new mongoose.Schema({
     id : {
         type : String
