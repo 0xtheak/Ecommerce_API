@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod_start": "EAPI_ENVIRONMENT=production nodemon index.js"
   },
   "author": "Aamir Khan",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
     "mongoose": "^6.10.0",
-    "nodemon": "^2.0.20"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "rotating-file-stream": "^3.1.0"
   }
 }
